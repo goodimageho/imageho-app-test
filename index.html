@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퍼스널컬러 셀프테스터 - 개념 설명</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <header>
+        <div class="badge">시작하기</div>
+        <h1>퍼스널컬러 <span class="highlight">개념</span> 알아보기</h1>
+        <p class="subtitle">나의 신체색은 웜톤? 쿨톤?</p>
+    </header>
+
+    <!-- 개념 설명 섹션 -->
+    <section class="concept-section">
+        <div class="audio-player">
+            <button class="play-btn" id="conceptPlayBtn" aria-label="개념 설명 듣기">
+                <span class="play-icon">▶</span>
+                <span class="play-text">설명 듣기</span>
+            </button>
+            <audio id="conceptAudio" preload="metadata">
+                <source src="assets/audio/concept.mp3" type="audio/mpeg">
+            </audio>
+            <div class="progress-bar">
+                <div class="progress-fill" id="conceptProgress"></div>
+            </div>
+        </div>
+        
+        <div class="tone-cards">
+            <div class="card warm-card">
+                <h3>웜톤 (Warm)</h3>
+                <p class="season">봄 & 가을</p>
+                <p class="description">노란빛이 도는 따뜻한 색감</p>
+                <div class="color-samples">
+                    <div class="color-sample" style="background-color: #E8A87C;"></div>
+                    <div class="color-sample" style="background-color: #F4B895;"></div>
+                    <div class="color-sample" style="background-color: #F8C4A3;"></div>
+                    <div class="color-sample" style="background-color: #FFD4B8;"></div>
+                </div>
+            </div>
+            
+            <div class="card cool-card">
+                <h3>쿨톤 (Cool)</h3>
+                <p class="season">여름 & 겨울</p>
+                <p class="description">파란빛이 도는 시원한 색감</p>
+                <div class="color-samples">
+                    <div class="color-sample" style="background-color: #D4A5B9;"></div>
+                    <div class="color-sample" style="background-color: #C19BB5;"></div>
+                    <div class="color-sample" style="background-color: #B089A3;"></div>
+                    <div class="color-sample" style="background-color: #A07791;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 다음 단계 버튼 -->
+    <section class="next-step-section">
+        <button class="next-step-btn" id="nextStepBtn">
+            <span class="btn-text">1단계 진행하기</span>
+            <span class="btn-icon">→</span>
+        </button>
+    </section>
+
+    <script src="js/concept.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퍼스널컬러 셀프테스터 - 1단계 웜쿨 체크</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <header>
+        <div class="badge">1단계</div>
+        <h1>퍼스널컬러 <span class="highlight">웜쿨</span> 체크</h1>
+        <p class="subtitle">나의 신체색은 웜톤? 쿨톤?</p>
+    </header>
+
+    <!-- 체크 섹션 -->
+    <section class="check-section">
+        <div class="section-header">
+            <h2>1단계: 신체색 웜쿨 체크</h2>
+            <div class="audio-player">
+                <button class="play-btn" id="stage1PlayBtn" aria-label="1단계 안내 듣기">
+                    <span class="play-icon">▶</span>
+                    <span class="play-text">안내 듣기</span>
+                </button>
+                <audio id="stage1Audio" preload="metadata">
+                    <source src="assets/audio/stage1-intro.mp3" type="audio/mpeg">
+                </audio>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="stage1Progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="check-content">
+            <div class="check-guide">
+                <img src="assets/images/warm-cool-check-sheet.png" 
+                     alt="웜쿨 체크 시트"
+                     class="check-sheet-image" />
+            </div>
+            
+            <div class="interactive-check">
+                <h3>웜쿨 체크 결과를 아래에 체크해보세요</h3>
+                
+                <!-- Lip & Cheek 섹션 -->
+                <div class="check-category" data-category="lipCheek">
+                    <div class="category-header">
+                        <span class="category-label">Lip & Cheek</span>
+                        <button class="guide-btn" data-audio="lip-cheek-guide.mp3" aria-label="립앤치크 가이드 듣기">가이드 듣기</button>
+                    </div>
+                    <div class="check-row">
+                        <div class="warm-options">
+                            <div class="option-label">웜톤</div>
+                            <div class="option-group">
+                                <button class="option-number clickable-option" data-name="lipCheek-warm-1" data-value="warm-1" data-tone="warm" data-category="lipCheek">1</button>
+                                <button class="option-number clickable-option" data-name="lipCheek-warm-2" data-value="warm-2" data-tone="warm" data-category="lipCheek">2</button>
+                                <button class="option-number clickable-option" data-name="lipCheek-warm-3" data-value="warm-3" data-tone="warm" data-category="lipCheek">3</button>
+                                <button class="option-number clickable-option" data-name="lipCheek-warm-4" data-value="warm-4" data-tone="warm" data-category="lipCheek">4</button>
+                            </div>
+                        </div>
+                        <div class="cool-options">
+                            <div class="option-label">쿨톤</div>
+                            <div class="option-group">
+                                <button class="option-number clickable-option" data-name="lipCheek-cool-1" data-value="cool-1" data-tone="cool" data-category="lipCheek">1</button>
+                                <button class="option-number clickable-option" data-name="lipCheek-cool-2" data-value="cool-2" data-tone="cool" data-category="lipCheek">2</button>
+                                <button class="option-number clickable-option" data-name="lipCheek-cool-3" data-value="cool-3" data-tone="cool" data-category="lipCheek">3</button>
+                                <button class="option-number clickable-option" data-name="lipCheek-cool-4" data-value="cool-4" data-tone="cool" data-category="lipCheek">4</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skin 섹션 -->
+                <div class="check-category" data-category="skin">
+                    <div class="category-header">
+                        <span class="category-label">Skin</span>
+                        <button class="guide-btn" data-audio="skin-guide.mp3" aria-label="피부색 가이드 듣기">가이드 듣기</button>
+                    </div>
+                    <div class="check-row">
+                        <div class="warm-options">
+                            <div class="option-label">웜톤</div>
+                            <div class="option-group">
+                                <button class="option-number clickable-option" data-name="skin-warm-1" data-value="warm-1" data-tone="warm" data-category="skin">1</button>
+                                <button class="option-number clickable-option" data-name="skin-warm-2" data-value="warm-2" data-tone="warm" data-category="skin">2</button>
+                                <button class="option-number clickable-option" data-name="skin-warm-3" data-value="warm-3" data-tone="warm" data-category="skin">3</button>
+                                <button class="option-number clickable-option" data-name="skin-warm-4" data-value="warm-4" data-tone="warm" data-category="skin">4</button>
+                            </div>
+                        </div>
+                        <div class="cool-options">
+                            <div class="option-label">쿨톤</div>
+                            <div class="option-group">
+                                <button class="option-number clickable-option" data-name="skin-cool-1" data-value="cool-1" data-tone="cool" data-category="skin">1</button>
+                                <button class="option-number clickable-option" data-name="skin-cool-2" data-value="cool-2" data-tone="cool" data-category="skin">2</button>
+                                <button class="option-number clickable-option" data-name="skin-cool-3" data-value="cool-3" data-tone="cool" data-category="skin">3</button>
+                                <button class="option-number clickable-option" data-name="skin-cool-4" data-value="cool-4" data-tone="cool" data-category="skin">4</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hair & Eye 섹션 -->
+                <div class="check-category" data-category="hairEye">
+                    <div class="category-header">
+                        <span class="category-label">Hair & Eye</span>
+                        <button class="guide-btn" data-audio="hair-eye-guide.mp3" aria-label="헤어앤아이 가이드 듣기">가이드 듣기</button>
+                    </div>
+                    <div class="check-row">
+                        <div class="warm-options">
+                            <div class="option-label">웜톤</div>
+                            <div class="option-group">
+                                <button class="option-number clickable-option" data-name="hairEye-warm-1" data-value="warm-1" data-tone="warm" data-category="hairEye">1</button>
+                                <button class="option-number clickable-option" data-name="hairEye-warm-2" data-value="warm-2" data-tone="warm" data-category="hairEye">2</button>
+                                <button class="option-number clickable-option" data-name="hairEye-warm-3" data-value="warm-3" data-tone="warm" data-category="hairEye">3</button>
+                                <button class="option-number clickable-option" data-name="hairEye-warm-4" data-value="warm-4" data-tone="warm" data-category="hairEye">4</button>
+                            </div>
+                        </div>
+                        <div class="cool-options">
+                            <div class="option-label">쿨톤</div>
+                            <div class="option-group">
+                                <button class="option-number clickable-option" data-name="hairEye-cool-1" data-value="cool-1" data-tone="cool" data-category="hairEye">1</button>
+                                <button class="option-number clickable-option" data-name="hairEye-cool-2" data-value="cool-2" data-tone="cool" data-category="hairEye">2</button>
+                                <button class="option-number clickable-option" data-name="hairEye-cool-3" data-value="cool-3" data-tone="cool" data-category="hairEye">3</button>
+                                <button class="option-number clickable-option" data-name="hairEye-cool-4" data-value="cool-4" data-tone="cool" data-category="hairEye">4</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 결과 섹션 -->
+    <section class="result-section">
+        <div class="count-display">
+            <div class="warm-count">
+                <span class="label">웜톤</span>
+                <span class="count" id="warmCount">0</span>
+                <span class="unit">개</span>
+            </div>
+            <div class="vs">VS</div>
+            <div class="cool-count">
+                <span class="label">쿨톤</span>
+                <span class="count" id="coolCount">0</span>
+                <span class="unit">개</span>
+            </div>
+        </div>
+        
+        <div class="result-message" id="resultMessage">
+            체크를 완료하면 결과가 표시됩니다
+        </div>
+        
+        <p class="note">
+            ※ 1단계는 신체색이 어느 쪽에 더 많이 분포해 있는지 확인하는 단계입니다.
+        </p>
+    </section>
+
+    <!-- 네비게이션 버튼 섹션 -->
+    <section class="navigation-section">
+        <div class="nav-buttons">
+            <button class="nav-btn back-btn" id="backToConceptBtn">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">개념설명으로 돌아가기</span>
+            </button>
+            <button class="nav-btn next-btn" id="nextStageBtn">
+                <span class="btn-text">2단계 진행하기</span>
+                <span class="btn-icon">→</span>
+            </button>
+        </div>
+    </section>
+
+    <script src="js/stage1.js"></script>
+</body>
+</html>
