@@ -124,7 +124,6 @@ function showSections(ids) {
 
 // ——— 인트로 ———
 function initIntro() {
-    const btn = document.getElementById('introStartBtn');
     const playBtn = document.getElementById('introPlayBtn');
     const progress = document.getElementById('introProgress');
     if (playBtn && progress) {
@@ -134,13 +133,6 @@ function initIntro() {
             } else {
                 speakText(ttsTexts.intro, progress);
             }
-        });
-    }
-    if (btn) {
-        btn.addEventListener('click', () => {
-            currentState = DiagnosisState.SHEET;
-            showSection('sectionSheet');
-            applyRecommendedSheet();
         });
     }
 }
@@ -467,7 +459,7 @@ function resetAndGoSheet() {
     currentColorIndex = 0;
     currentState = DiagnosisState.SHEET;
     sheetType = null;
-    showSection('sectionSheet');
+    showSections(['sectionIntro', 'sectionSheet']);
     document.getElementById('sheetSpringSummer').classList.remove('selected');
     document.getElementById('sheetAutumnWinter').classList.remove('selected');
     applyRecommendedSheet();
@@ -478,7 +470,9 @@ function init() {
     if (window.speechSynthesis.onvoiceschanged !== undefined) {
         window.speechSynthesis.onvoiceschanged = () => {};
     }
-    showSection('sectionIntro');
+    // 인트로 + 시트 선택을 같은 페이지에 표시
+    showSections(['sectionIntro', 'sectionSheet']);
+    applyRecommendedSheet();
     initIntro();
     initSheetSelection();
     initNavButtons();

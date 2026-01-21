@@ -195,24 +195,6 @@ header .highlight {
     line-height: 1.6;
 }
 
-/* 웜/쿨: 상단 이미지 크롭 (Warm vs Cool 타이틀 영역) */
-.tone-intro-image {
-    width: 100%;
-    max-width: 560px;
-    height: 120px;
-    margin: 0 auto var(--spacing-md);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-}
-
-.tone-intro-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-}
-
 /* 4계절: 전체 팔레트 이미지 */
 .season-palette-container {
     width: 100%;
@@ -693,12 +675,6 @@ header .highlight {
         font-size: 1rem;
     }
     
-    .tone-intro-image {
-        max-width: 500px;
-        height: 100px;
-        margin-bottom: var(--spacing-sm);
-    }
-    
     .season-palette-container {
         max-width: 500px;
         margin-bottom: var(--spacing-md);
@@ -740,11 +716,6 @@ header .highlight {
     .check-section,
     .result-section {
         padding: var(--spacing-md) var(--spacing-sm);
-    }
-    
-    .tone-intro-image {
-        height: 88px;
-        margin-bottom: var(--spacing-sm);
     }
     
     .concept-block-title {

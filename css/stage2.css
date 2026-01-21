@@ -67,7 +67,13 @@
 }
 .section-intro .intro-audio { margin-bottom: 1.5rem; }
 
-/* 시트 선택 */
+/* 시트 선택 (인트로와 같은 페이지에 배치) */
+.section-sheet {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
 .section-sheet h2 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--text-primary); }
 .sheet-hint {
     font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.5;
