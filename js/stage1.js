@@ -254,54 +254,59 @@ function initRadioButtons() {
 function initClickableOptions() {
     clickableOptions.forEach(option => {
         const optionKey = option.getAttribute('data-name');
+        const category = option.getAttribute('data-category');
+        const isSkin = category === 'skin';
         
         // 초기 카운트는 0
         if (!checkboxCounts.has(optionKey)) {
             checkboxCounts.set(optionKey, 0);
         }
         
-        // 클릭 이벤트 처리 (순환 방식: 0 → 1 → 2 → 1 → 0)
+        // 클릭 이벤트 처리
         option.addEventListener('click', () => {
             const currentCount = checkboxCounts.get(optionKey) || 0;
             let newCount;
             
-            // 방향 설정 (초기값은 증가)
-            const direction = clickDirection.get(optionKey) || 'up';
-            
-            // 카운트에 따라 증가 또는 감소 결정
-            if (currentCount === 0) {
-                // 0 → 1 (증가)
-                newCount = 1;
-                clickDirection.set(optionKey, 'up');
-            } else if (currentCount === 1) {
-                // 1 → 2 (증가) 또는 1 → 0 (감소)
-                if (direction === 'up') {
-                    newCount = 2;
-                    clickDirection.set(optionKey, 'down'); // 다음에는 감소 방향
+            if (isSkin) {
+                // Skin: 여러 숫자 동시 선택 가능 + 0→1→0 (토글만, 2 없음)
+                newCount = currentCount === 1 ? 0 : 1;
+                checkboxCounts.set(optionKey, newCount);
+                option.classList.remove('clicked-1', 'clicked-2');
+                if (newCount === 1) {
+                    option.classList.add('clicked-1');
+                }
+            } else {
+                // Lip & Cheek, Hair & Eye: 기존 순환 방식 (0 → 1 → 2 → 1 → 0)
+                const direction = clickDirection.get(optionKey) || 'up';
+                
+                if (currentCount === 0) {
+                    newCount = 1;
+                    clickDirection.set(optionKey, 'up');
+                } else if (currentCount === 1) {
+                    if (direction === 'up') {
+                        newCount = 2;
+                        clickDirection.set(optionKey, 'down');
+                    } else {
+                        newCount = 0;
+                        clickDirection.set(optionKey, 'up');
+                    }
+                } else if (currentCount === 2) {
+                    newCount = 1;
+                    clickDirection.set(optionKey, 'down');
                 } else {
                     newCount = 0;
-                    clickDirection.set(optionKey, 'up'); // 다음에는 증가 방향
+                    clickDirection.set(optionKey, 'up');
                 }
-            } else if (currentCount === 2) {
-                // 2 → 1 (감소)
-                newCount = 1;
-                clickDirection.set(optionKey, 'down');
-            } else {
-                // 예외 처리: 기본값
-                newCount = 0;
-                clickDirection.set(optionKey, 'up');
+                
+                checkboxCounts.set(optionKey, newCount);
+                
+                option.classList.remove('clicked-1', 'clicked-2');
+                if (newCount === 1) {
+                    option.classList.add('clicked-1');
+                } else if (newCount === 2) {
+                    option.classList.add('clicked-2');
+                }
             }
-            
-            checkboxCounts.set(optionKey, newCount);
-            
-            // 클릭 횟수에 따른 클래스 업데이트
-            option.classList.remove('clicked-1', 'clicked-2');
-            if (newCount === 1) {
-                option.classList.add('clicked-1');
-            } else if (newCount === 2) {
-                option.classList.add('clicked-2');
-            }
-            // newCount가 0이면 클래스 제거 (기본 상태)
             
             // 결과 업데이트
             updateResult();
@@ -398,6 +403,36 @@ function isAllChecked() {
     return Object.values(selectedItems).every(item => item !== null);
 }
 
+// 1단계 결과를 저장하고 2단계로 이동 (설계서: 1-2번 많으면 봄/여름, 3-4번 많으면 가을/겨울)
+function getRecommendedSheet() {
+    let lightCount = 0;  // 1, 2번
+    let deepCount = 0;   // 3, 4번
+    checkboxCounts.forEach((count, optionKey) => {
+        if (count <= 0) return;
+        const num = parseInt(optionKey.split('-').pop(), 10);
+        if (num === 1 || num === 2) lightCount += count;
+        else if (num === 3 || num === 4) deepCount += count;
+    });
+    if (lightCount > deepCount) return 'spring-summer';
+    if (deepCount > lightCount) return 'autumn-winter';
+    return null;
+}
+
+// 1단계 결과를 localStorage에 저장
+function saveStage1ResultAndGoToStage2() {
+    const { warmCount, coolCount } = countTones();
+    const recommendedSheet = getRecommendedSheet();
+    const countsObj = {};
+    checkboxCounts.forEach((v, k) => { countsObj[k] = v; });
+    localStorage.setItem('stage1Result', JSON.stringify({
+        warmCount,
+        coolCount,
+        recommendedSheet,
+        counts: countsObj
+    }));
+    window.location.href = 'stage2.html';
+}
+
 // 네비게이션 버튼 초기화
 function initNavigationButtons() {
     const backToConceptBtn = document.getElementById('backToConceptBtn');
@@ -410,11 +445,10 @@ function initNavigationButtons() {
         });
     }
     
-    // 2단계 진행하기 버튼
+    // 2단계 진행하기 버튼 (본 웹사이트 2단계 페이지로 이동)
     if (nextStageBtn) {
         nextStageBtn.addEventListener('click', () => {
-            // stage2.html로 이동 (나중에 생성될 페이지)
-            window.location.href = 'stage2.html';
+            saveStage1ResultAndGoToStage2();
         });
     }
 }

@@ -5,6 +5,12 @@
     --cool-primary: #D4A5B9;
     --accent-pink: #FF6B9D;
     
+    /* 4계절 대표색 */
+    --spring-primary: #8BC34A;
+    --summer-primary: #B39DDB;
+    --autumn-primary: #8D6E63;
+    --winter-primary: #5C6BC0;
+    
     /* 배경 */
     --bg-light: #FFF9F5;
     --bg-warm: #FDF5ED;
@@ -164,6 +170,105 @@ header .highlight {
     border-radius: 2px;
 }
 
+/* 개념 블록 (웜/쿨 → 4계절) */
+.concept-block {
+    margin-bottom: var(--spacing-xl);
+}
+
+.concept-block:last-child {
+    margin-bottom: 0;
+}
+
+.concept-block-title {
+    font-size: 1.375rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--border-light);
+}
+
+.concept-block-desc {
+    font-size: 1rem;
+    color: var(--text-gray);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+/* 웜/쿨: 상단 이미지 크롭 (Warm vs Cool 타이틀 영역) */
+.tone-intro-image {
+    width: 100%;
+    max-width: 560px;
+    height: 120px;
+    margin: 0 auto var(--spacing-md);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.tone-intro-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* 4계절: 전체 팔레트 이미지 */
+.season-palette-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-lg);
+    padding: 0 16px;
+}
+
+.season-palette-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 4계절 카드 */
+.season-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+.spring-card {
+    border-top: 4px solid var(--spring-primary);
+    background: linear-gradient(to bottom, white, rgba(139, 195, 74, 0.06));
+}
+
+.summer-card {
+    border-top: 4px solid var(--summer-primary);
+    background: linear-gradient(to bottom, white, rgba(179, 157, 219, 0.08));
+}
+
+.autumn-card {
+    border-top: 4px solid var(--autumn-primary);
+    background: linear-gradient(to bottom, white, rgba(141, 110, 99, 0.06));
+}
+
+.winter-card {
+    border-top: 4px solid var(--winter-primary);
+    background: linear-gradient(to bottom, white, rgba(92, 107, 192, 0.06));
+}
+
 .tone-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -209,6 +314,19 @@ header .highlight {
 
 .card .description {
     font-size: 1rem;
+    color: var(--text-gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.card .tone-desc {
+    font-size: 1rem;
+    color: var(--text-gray);
+    margin-bottom: var(--spacing-xs);
+}
+
+.card .season-label {
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
     color: var(--text-gray);
     margin-bottom: var(--spacing-md);
 }
@@ -575,6 +693,21 @@ header .highlight {
         font-size: 1rem;
     }
     
+    .tone-intro-image {
+        max-width: 500px;
+        height: 100px;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .season-palette-container {
+        max-width: 500px;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .season-cards {
+        grid-template-columns: 1fr;
+    }
+    
     .check-content {
         grid-template-columns: 1fr;
     }
@@ -607,6 +740,25 @@ header .highlight {
     .check-section,
     .result-section {
         padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .tone-intro-image {
+        height: 88px;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .concept-block-title {
+        font-size: 1.25rem;
+    }
+    
+    .season-palette-container {
+        max-width: 100%;
+        padding: 0 12px;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .season-palette-image {
+        border-radius: 12px;
     }
     
     .option-number {

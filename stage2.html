@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2단계: 퍼스널컬러 웜쿨 진단</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stage2.css">
+</head>
+<body class="stage2-page">
+    <!-- 헤더 -->
+    <header class="stage2-header">
+        <a href="stage1.html" class="stage2-back-link">← 1단계로</a>
+        <div class="badge">2단계</div>
+        <h1>퍼스널컬러 <span class="highlight">웜쿨</span> 진단</h1>
+        <p class="subtitle">웜톤/쿨톤 시트로 더 건강해 보이는 컬러를 찾아보세요</p>
+    </header>
+
+    <main class="stage2-main">
+        <!-- [1] 인트로: 시작 안내 + 시작 버튼 -->
+        <section id="sectionIntro" class="stage2-section section-intro">
+            <div class="intro-audio">
+                <button type="button" class="play-btn" id="introPlayBtn" aria-label="2단계 안내 듣기">
+                    <span class="play-icon">▶</span>
+                    <span class="play-text">안내 듣기</span>
+                </button>
+                <div class="progress-bar"><div class="progress-fill" id="introProgress"></div></div>
+            </div>
+            <button type="button" class="next-step-btn" id="introStartBtn">시작하기</button>
+        </section>
+
+        <!-- [2] 시트 선택: 봄/여름 vs 가을/겨울 -->
+        <section id="sectionSheet" class="stage2-section section-sheet" hidden>
+            <h2>진단에 사용할 시트를 선택해주세요</h2>
+            <p class="sheet-hint">1단계에서 피부색, 입술색 결과가 1-2번이 많으면 봄/여름, 3-4번이 많으면 가을/겨울 시트를 선택합니다.</p>
+            <div class="sheet-options">
+                <button type="button" class="sheet-btn spring-summer" id="sheetSpringSummer" data-sheet="spring-summer">
+                    <span class="seasons">봄 / 여름</span>
+                    <span class="desc">밝고 선명한 컬러</span>
+                    <span class="recommend-badge" id="recommendSpringSummer" hidden>추천</span>
+                </button>
+                <button type="button" class="sheet-btn autumn-winter" id="sheetAutumnWinter" data-sheet="autumn-winter">
+                    <span class="seasons">가을 / 겨울</span>
+                    <span class="desc">깊고 차분한 컬러</span>
+                    <span class="recommend-badge" id="recommendAutumnWinter" hidden>추천</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- [3] 프로그레스 바 -->
+        <section id="sectionProgress" class="stage2-section section-progress" hidden>
+            <div class="progress-bar-stage2" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5">
+                <div class="progress-steps">
+                    <div class="progress-step" data-step="pink"><span class="step-dot"></span><span class="step-label">PINK</span></div>
+                    <div class="progress-step" data-step="red"><span class="step-dot"></span><span class="step-label">RED</span></div>
+                    <div class="progress-step" data-step="yellow"><span class="step-dot"></span><span class="step-label">YELLOW</span></div>
+                    <div class="progress-step" data-step="green"><span class="step-dot"></span><span class="step-label">GREEN</span></div>
+                    <div class="progress-step" data-step="blue"><span class="step-dot"></span><span class="step-label">BLUE</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- [4] 컬러 진단: 현재 컬러 비교 UI -->
+        <section id="sectionColor" class="stage2-section section-color" hidden>
+            <div id="colorComparisonContainer" class="color-comparison-wrapper"></div>
+        </section>
+
+        <!-- [5] 체크표 -->
+        <section id="sectionCheckbox" class="stage2-section section-checkbox" hidden>
+            <div class="grid-header">웜쿨 진단 결과를 아래 □에 체크해보세요.</div>
+            <div id="checkboxGridContainer" class="checkbox-grid"></div>
+        </section>
+
+        <!-- [6] 하단: 다음 컬러 / 결과 보기 -->
+        <section id="sectionNav" class="stage2-section section-nav" hidden>
+            <div class="result-counts">
+                <span class="rc-warm">웜톤: <strong id="navWarmCount">0</strong>개</span>
+                <span class="rc-cool">쿨톤: <strong id="navCoolCount">0</strong>개</span>
+            </div>
+            <div class="nav-buttons-stage2">
+                <button type="button" class="nav-btn back-btn" id="stage2PrevColor">이전 컬러</button>
+                <button type="button" class="nav-btn next-btn" id="stage2NextColor">다음 컬러</button>
+                <button type="button" class="nav-btn result-btn" id="stage2ResultBtn" hidden>결과 확인하기</button>
+            </div>
+        </section>
+
+        <!-- [7] 결과 화면 -->
+        <section id="sectionResult" class="stage2-section section-result" hidden>
+            <div id="resultContent" class="result-screen"></div>
+        </section>
+    </main>
+
+    <script src="js/stage2.js"></script>
+</body>
+</html>
