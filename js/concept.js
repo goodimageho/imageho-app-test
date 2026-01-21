@@ -6,9 +6,16 @@ const ttsTexts = {
 // 전역 TTS 상태 관리
 let currentSpeech = null;
 let speechProgressInterval = null;
+let ttsSupported = true; // TTS 지원 여부
 
 // TTS 재생 함수
 function speakText(text, playBtn, progressBar, onComplete) {
+    // TTS를 지원하지 않으면 중단
+    if (!ttsSupported || !window.speechSynthesis) {
+        console.warn('TTS가 지원되지 않습니다.');
+        return;
+    }
+    
     // 기존 재생 중인 음성 중지
     if (window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
@@ -103,7 +110,7 @@ function speakText(text, playBtn, progressBar, onComplete) {
 
 // TTS 정지 함수
 function stopTTS() {
-    if (window.speechSynthesis.speaking) {
+    if (ttsSupported && window.speechSynthesis && window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
     }
     if (speechProgressInterval) {
@@ -114,7 +121,7 @@ function stopTTS() {
 }
 
 // 음성 목록 로드 대기 (브라우저마다 다름)
-if (window.speechSynthesis.onvoiceschanged !== undefined) {
+if (typeof window.speechSynthesis !== 'undefined' && window.speechSynthesis.onvoiceschanged !== undefined) {
     window.speechSynthesis.onvoiceschanged = () => {
         // 음성 목록이 로드되었을 때 처리
     };
@@ -131,6 +138,16 @@ function initAudioPlayer(playBtn, progressBar, textKey) {
     
     const text = ttsTexts[textKey];
     if (!text) return;
+    
+    // TTS를 지원하지 않으면 버튼 비활성화
+    if (!ttsSupported) {
+        playBtn.disabled = true;
+        playBtn.style.opacity = '0.5';
+        playBtn.style.cursor = 'not-allowed';
+        const playText = playBtn.querySelector('.play-text');
+        if (playText) playText.textContent = '지원 안됨';
+        return;
+    }
     
     let isPlaying = false;
     
@@ -171,17 +188,20 @@ function init() {
     // TTS 지원 확인
     if (!window.speechSynthesis) {
         console.warn('이 브라우저는 TTS를 지원하지 않습니다.');
-        alert('이 브라우저는 음성 기능을 지원하지 않습니다. 최신 브라우저로 업데이트해주세요.');
-        return;
+        ttsSupported = false;
+        // TTS 없어도 계속 진행 (return 제거!)
     }
     
     // 오디오 플레이어 초기화 (TTS 사용)
     initAudioPlayer(conceptPlayBtn, conceptProgress, 'concept');
     
-    // 다음 단계 버튼 초기화
+    // 다음 단계 버튼 초기화 (TTS 여부와 관계없이 실행!)
     initNextStepButton();
     
     console.log('퍼스널컬러 개념 설명 페이지 초기화 완료');
+    if (!ttsSupported) {
+        console.log('음성 안내 기능은 이 브라우저에서 지원되지 않습니다.');
+    }
 }
 
 // DOM 로드 완료 시 초기화
