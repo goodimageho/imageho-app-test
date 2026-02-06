@@ -1,0 +1,28 @@
+/* ===== 3단계: 잘 어울리는 컬러 진단 (2단계 구조 재사용) ===== */
+
+.stage3-page {
+    --accent-pink: #FF6B9D;
+    --bg-main: #FFFAF5;
+}
+
+.stage3-page body {
+    background-color: var(--bg-main);
+}
+
+/* 헤더 - 2단계와 동일 스타일 사용 */
+.stage3-header .highlight {
+    color: #FFE5CC;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 하단 선택 결과 - 2단계와 동일한 스타일 */
+#stage3ResultCounts .rc-season1 { margin-right: 1rem; }
+#stage3ResultCounts .rc-season2 { }
+
+/* warm(봄/가을)인 경우 라벨 색상 */
+.stage3-page.warm-tone #stage3ResultCounts .rc-season1 { color: #8BC34A; }
+.stage3-page.warm-tone #stage3ResultCounts .rc-season2 { color: #8D6E63; }
+
+/* cool(여름/겨울)인 경우 라벨 색상 */
+.stage3-page.cool-tone #stage3ResultCounts .rc-season1 { color: #B39DDB; }
+.stage3-page.cool-tone #stage3ResultCounts .rc-season2 { color: #5C6BC0; }

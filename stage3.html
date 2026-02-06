@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3단계: 퍼스널컬러 잘 어울리는 컬러 진단</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stage2.css">
+    <link rel="stylesheet" href="css/stage3.css">
+</head>
+<body class="stage3-page stage2-page">
+    <!-- 헤더 -->
+    <header class="stage3-header stage2-header">
+        <a href="stage2.html" class="stage3-back-link stage2-back-link">← 2단계로</a>
+        <div class="badge">3단계</div>
+        <h1>퍼스널컬러 <span class="highlight">잘 어울리는 컬러</span> 진단</h1>
+        <p class="subtitle" id="stage3Subtitle">봄과 가을 / 여름과 겨울 컬러 중 잘 어울리는 것을 선택해보세요</p>
+    </header>
+
+    <main class="stage3-main stage2-main">
+        <!-- [1] 프로그레스 바 -->
+        <section id="sectionProgress" class="stage2-section section-progress">
+            <div class="progress-bar-stage2" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5">
+                <div class="progress-steps">
+                    <div class="progress-step" data-step="pink"><span class="step-dot"></span><span class="step-label">PINK</span></div>
+                    <div class="progress-step" data-step="red"><span class="step-dot"></span><span class="step-label">RED</span></div>
+                    <div class="progress-step" data-step="yellow"><span class="step-dot"></span><span class="step-label">YELLOW</span></div>
+                    <div class="progress-step" data-step="green"><span class="step-dot"></span><span class="step-label">GREEN</span></div>
+                    <div class="progress-step" data-step="blue"><span class="step-dot"></span><span class="step-label">BLUE</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- [2] 컬러 진단: 현재 컬러 비교 UI (봄 vs 가을 또는 여름 vs 겨울) -->
+        <section id="sectionColor" class="stage2-section section-color">
+            <div id="colorComparisonContainer" class="color-comparison-wrapper"></div>
+        </section>
+
+        <!-- [3] 체크표 -->
+        <section id="sectionCheckbox" class="stage2-section section-checkbox">
+            <div class="grid-header">잘 어울리는 컬러 진단 결과를 아래 □에 체크해보세요.</div>
+            <div id="checkboxGridContainer" class="checkbox-grid"></div>
+        </section>
+
+        <!-- [4] 하단: 선택 결과 및 네비게이션 -->
+        <section id="sectionNav" class="stage2-section section-nav">
+            <div class="result-counts" id="stage3ResultCounts">
+                <span class="rc-season1"><span id="navSeason1Label">봄</span>: <strong id="navSeason1Count">0</strong>개</span>
+                <span class="rc-season2"><span id="navSeason2Label">가을</span>: <strong id="navSeason2Count">0</strong>개</span>
+            </div>
+            <div class="nav-buttons-stage2">
+                <button type="button" class="nav-btn back-btn" id="stage3PrevColor">이전 컬러</button>
+                <button type="button" class="nav-btn next-btn" id="stage3NextColor">다음 컬러</button>
+                <button type="button" class="nav-btn result-btn" id="stage3ResultBtn" hidden>결과 확인하기</button>
+            </div>
+        </section>
+
+        <!-- [5] 결과 화면 -->
+        <section id="sectionResult" class="stage2-section section-result" hidden>
+            <div id="resultContent" class="result-screen"></div>
+        </section>
+    </main>
+
+    <script src="js/stage3.js"></script>
+</body>
+</html>

@@ -450,7 +450,7 @@ function renderResultScreen() {
             results: diagnosisResults,
             ...calculateFinalResult()
         }));
-        alert('3단계는 준비 중입니다.');
+        window.location.href = 'stage3.html';
     });
 }
 
