@@ -1,6 +1,6 @@
 // TTS 텍스트 내용
 const ttsTexts = {
-    concept: '퍼스널컬러란 개인의 고유 신체색인 머리카락 색, 눈동자 색, 피부색, 볼의 혈색, 입술색 등과 자연스럽게 조화를 이루는 컬러를 말합니다. 퍼스널컬러는 크게 웜톤과 쿨톤 두 가지로 분류합니다. 봄과 가을 계절은 각 컬러에 노란색이 들어가 있어 따뜻함이 느껴져서 웜톤이라고 합니다. 여름과 겨울 계절은 각 컬러에 파란색이 들어가 있어 시원함이 느껴져서 쿨톤이라고 합니다.'
+    prepare: '퍼스널컬러 셀프테스터를 시작하기 전 케이프를 착용해주세요. 컬러시트 외의 다른 컬러가 비추어 올라오는 것을 막아줘요. 착용한 흰 케이프 앞면에 부착된 벨크로에 진단시트를 붙여 진단해보세요. 컬러별 2장을 겹쳐 붙이고 앞의 한장만 내렸다가, 올리면서 1장당 3초씩 천천히 비교하세요.'
 };
 
 // 전역 TTS 상태 관리
@@ -51,7 +51,7 @@ function speakText(text, playBtn, progressBar, onComplete) {
             if (playText) playText.textContent = '일시정지';
         }
         
-        // 진행바 시뮬레이션 (정확한 길이를 알 수 없으므로 애니메이션 사용)
+        // 진행바 시뮬레이션
         if (progressBar) {
             let progress = 0;
             speechProgressInterval = setInterval(() => {
@@ -79,7 +79,7 @@ function speakText(text, playBtn, progressBar, onComplete) {
         if (playBtn) {
             playBtn.classList.remove('playing');
             const playText = playBtn.querySelector('.play-text');
-            if (playText) playText.textContent = '설명 듣기';
+            if (playText) playText.textContent = '안내 듣기';
         }
         
         currentSpeech = null;
@@ -92,7 +92,7 @@ function speakText(text, playBtn, progressBar, onComplete) {
         if (playBtn) {
             playBtn.classList.remove('playing');
             const playText = playBtn.querySelector('.play-text');
-            if (playText) playText.textContent = '설명 듣기';
+            if (playText) playText.textContent = '안내 듣기';
         }
         if (progressBar) {
             progressBar.style.width = '0%';
@@ -120,7 +120,7 @@ function stopTTS() {
     currentSpeech = null;
 }
 
-// 음성 목록 로드 대기 (브라우저마다 다름)
+// 음성 목록 로드 대기
 if (typeof window.speechSynthesis !== 'undefined' && window.speechSynthesis.onvoiceschanged !== undefined) {
     window.speechSynthesis.onvoiceschanged = () => {
         // 음성 목록이 로드되었을 때 처리
@@ -128,8 +128,9 @@ if (typeof window.speechSynthesis !== 'undefined' && window.speechSynthesis.onvo
 }
 
 // DOM 요소
-const conceptPlayBtn = document.getElementById('conceptPlayBtn');
-const conceptProgress = document.getElementById('conceptProgress');
+const preparePlayBtn = document.getElementById('preparePlayBtn');
+const prepareProgress = document.getElementById('prepareProgress');
+const backToConceptBtn = document.getElementById('backToConceptBtn');
 const nextStepBtn = document.getElementById('nextStepBtn');
 
 // 오디오 플레이어 초기화 (TTS 사용)
@@ -160,7 +161,7 @@ function initAudioPlayer(playBtn, progressBar, textKey) {
             playBtn.classList.remove('playing');
             const playText = playBtn.querySelector('.play-text');
             if (playText) {
-                playText.textContent = '설명 듣기';
+                playText.textContent = '안내 듣기';
             }
             if (progressBar) {
                 progressBar.style.width = '0%';
@@ -173,14 +174,22 @@ function initAudioPlayer(playBtn, progressBar, textKey) {
     });
 }
 
-// 다음 단계 버튼 이벤트
-function initNextStepButton() {
-    if (!nextStepBtn) return;
+// 네비게이션 버튼 이벤트
+function initNavigationButtons() {
+    // 개념설명으로 돌아가기 버튼
+    if (backToConceptBtn) {
+        backToConceptBtn.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    }
     
-    nextStepBtn.addEventListener('click', () => {
-        // prepare.html로 이동 (1단계 전 준비 페이지)
-        window.location.href = 'prepare.html';
-    });
+    // 1단계 시작하기 버튼
+    if (nextStepBtn) {
+        nextStepBtn.addEventListener('click', () => {
+            // stage1.html로 이동
+            window.location.href = 'stage1.html';
+        });
+    }
 }
 
 // 초기화
@@ -189,16 +198,15 @@ function init() {
     if (!window.speechSynthesis) {
         console.warn('이 브라우저는 TTS를 지원하지 않습니다.');
         ttsSupported = false;
-        // TTS 없어도 계속 진행 (return 제거!)
     }
     
     // 오디오 플레이어 초기화 (TTS 사용)
-    initAudioPlayer(conceptPlayBtn, conceptProgress, 'concept');
+    initAudioPlayer(preparePlayBtn, prepareProgress, 'prepare');
     
-    // 다음 단계 버튼 초기화 (TTS 여부와 관계없이 실행!)
-    initNextStepButton();
+    // 네비게이션 버튼 초기화
+    initNavigationButtons();
     
-    console.log('퍼스널컬러 개념 설명 페이지 초기화 완료');
+    console.log('퍼스널컬러 준비 페이지 초기화 완료');
     if (!ttsSupported) {
         console.log('음성 안내 기능은 이 브라우저에서 지원되지 않습니다.');
     }

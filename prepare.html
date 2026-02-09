@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퍼스널컬러 셀프테스터 - 준비하기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <header>
+        <a href="index.html" class="header-logo-link"><img src="assets/images/imageho_logo.png" alt="image HO 로고" class="header-logo"></a>
+        <div class="badge">준비하기</div>
+        <h1>퍼스널컬러 <span class="highlight">진단</span> 준비</h1>
+    </header>
+
+    <!-- 준비 안내 섹션 -->
+    <section class="prepare-section">
+        <div class="audio-player">
+            <button class="play-btn" id="preparePlayBtn" aria-label="준비 안내 듣기">
+                <span class="play-icon">▶</span>
+                <span class="play-text">안내 듣기</span>
+            </button>
+            <div class="progress-bar">
+                <div class="progress-fill" id="prepareProgress"></div>
+            </div>
+        </div>
+
+        <!-- 케이프 이미지 -->
+        <div class="prepare-image-container">
+            <img src="assets/images/white-cape-image.png" 
+                 alt="흰색 케이프 착용 안내 이미지"
+                 class="prepare-image" />
+        </div>
+
+        <!-- 준비 안내 텍스트 -->
+        <div class="prepare-content">
+            <div class="prepare-text">
+                <p>퍼스널컬러 진단을 시작하기 전 착붙흰케이프를 착용해주세요.</p>
+                <p>착용할 때는 부착된 벨크로가 앞으로 향하도록 착용해주세요.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 네비게이션 버튼 섹션 -->
+    <section class="navigation-section">
+        <div class="nav-buttons">
+            <button class="nav-btn back-btn" id="backToConceptBtn">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">개념설명으로 돌아가기</span>
+            </button>
+            <button class="nav-btn next-btn" id="nextStepBtn">
+                <span class="btn-text">1단계 시작하기</span>
+                <span class="btn-icon">→</span>
+            </button>
+        </div>
+    </section>
+
+    <footer class="site-footer">© image HO. 본 사이트의 이미지 및 내용은 저작권법에 의해 보호됩니다.</footer>
+
+    <script src="js/prepare.js"></script>
+</body>
+</html>

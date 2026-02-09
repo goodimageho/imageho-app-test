@@ -12,6 +12,7 @@
 <body>
     <!-- 헤더 섹션 -->
     <header>
+        <a href="index.html" class="header-logo-link"><img src="assets/images/imageho_logo.png" alt="image HO 로고" class="header-logo"></a>
         <div class="badge">1단계</div>
         <h1>퍼스널컬러 <span class="highlight">웜쿨</span> 체크</h1>
         <p class="subtitle">나의 신체색은 웜톤? 쿨톤?</p>
@@ -20,7 +21,6 @@
     <!-- 체크 섹션 -->
     <section class="check-section">
         <div class="section-header">
-            <h2>1단계: 신체색 웜쿨 체크</h2>
             <div class="audio-player">
                 <button class="play-btn" id="stage1PlayBtn" aria-label="1단계 안내 듣기">
                     <span class="play-icon">▶</span>
@@ -43,7 +43,7 @@
             </div>
             
             <div class="interactive-check">
-                <h3>웜쿨 체크 결과를 아래에 체크해보세요</h3>
+                <h3>웜쿨체크 결과에 따른 번호를 클릭해주세요.</h3>
                 
                 <!-- Lip & Cheek 섹션 -->
                 <div class="check-category" data-category="lipCheek">
@@ -162,7 +162,7 @@
         <div class="nav-buttons">
             <button class="nav-btn back-btn" id="backToConceptBtn">
                 <span class="btn-icon">←</span>
-                <span class="btn-text">개념설명으로 돌아가기</span>
+                <span class="btn-text">진단 전 준비하기</span>
             </button>
             <button class="nav-btn next-btn" id="nextStageBtn">
                 <span class="btn-text">2단계 진행하기</span>
@@ -170,6 +170,8 @@
             </button>
         </div>
     </section>
+
+    <footer class="site-footer">© image HO. 본 사이트의 이미지 및 내용은 저작권법에 의해 보호됩니다.</footer>
 
     <script src="js/stage1.js"></script>
 </body>

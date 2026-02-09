@@ -67,11 +67,27 @@ body {
 
 /* 헤더 */
 header {
+    position: relative;
     background: linear-gradient(135deg, var(--accent-pink), #FF8FB3);
     color: white;
     padding: var(--spacing-xl) var(--spacing-md);
     text-align: center;
     box-shadow: var(--shadow-md);
+}
+
+/* 헤더 로고 (우측 상단) */
+.header-logo-link {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-md);
+    line-height: 0;
+    text-decoration: none;
+}
+.header-logo {
+    height: 72px;
+    width: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .badge {
@@ -667,6 +683,13 @@ header .highlight {
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
+    .header-logo {
+        height: 60px;
+    }
+    .header-logo-link {
+        top: var(--spacing-xs);
+        right: var(--spacing-sm);
+    }
     header h1 {
         font-size: 1.5rem;
     }
@@ -924,5 +947,83 @@ header .highlight {
         max-width: 300px;
         padding: var(--spacing-md) var(--spacing-lg);
         font-size: 1rem;
+    }
+}
+
+/* ===== 준비 페이지 스타일 ===== */
+.prepare-section {
+    padding: var(--spacing-xl) var(--spacing-md);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.prepare-image-container {
+    width: 100%;
+    max-width: 500px;
+    margin: var(--spacing-lg) auto;
+    text-align: center;
+}
+
+.prepare-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    background: white;
+}
+
+.prepare-content {
+    background: white;
+    border-radius: 16px;
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    margin-top: var(--spacing-lg);
+}
+
+.prepare-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.prepare-text p {
+    margin-bottom: var(--spacing-md);
+}
+
+.prepare-text p:last-child {
+    margin-bottom: 0;
+}
+
+.highlight-number {
+    color: var(--accent-pink);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.25rem;
+}
+
+/* 사이트 푸터 (저작권 표시) */
+.site-footer {
+    text-align: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    border-top: 1px solid var(--border-light);
+    background: white;
+}
+
+@media (max-width: 768px) {
+    .prepare-section {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+    
+    .prepare-content {
+        padding: var(--spacing-lg);
+    }
+    
+    .prepare-text {
+        font-size: 1rem;
+    }
+    
+    .highlight-number {
+        font-size: 1.125rem;
     }
 }

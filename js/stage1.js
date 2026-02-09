@@ -22,7 +22,8 @@ const ttsTexts = {
     stage1: '1단계 신체색 웜쿨 체크를 시작하겠습니다. 웜쿨 체크 시트에서 피부색, 입술색, 볼 혈색, 눈동자색, 머리카락색이 웜쿨 어느 쪽에 가까운지 가볍게 체크해보세요.',
     'hair-eye-guide': '마지막으로 눈동자색과 머리카락색을 확인해보세요. 자연광 아래에서 눈동자와 모발의 색상을 확인하시고, 가장 가까워 보이는 색상을 선택해주세요. 염색을 하셨다면 염색한 모발 기준으로 체크하시면 됩니다.',
     'skin-guide': '다음은 피부색입니다. 귀 앞쪽이나 목 부분의 피부색을 기준으로 확인해보세요. 웜톤과 쿨톤의 스킨 컬러 중 가장 가까워 보이는 색상을 선택해주세요.',
-    'lip-cheek-guide': '먼저 입술색과 볼의 혈색을 확인해보세요. 웜쿨체크시트의 립앤치크 컬러 중 가장 가까워 보이는 색상을 선택해주세요. 웜톤의 일번부터 사번, 쿨톤의 일번부터 사번 중에서 선택하시면 됩니다.'
+    'Cheek-guide': '다음은 볼의 혈색을 확인해보세요. 웜쿨체크시트를 볼 옆으로 십일자로 들어주세요. 웜쿨체크시트의 립앤치크 컬러 중 볼의 혈색과 가장 가까워 보이는 색상을 선택해주세요. 가까워보이는 색 모두 다 선택하시면 됩니다.',
+    'lip-cheek-guide': '먼저 입술색을 확인해보세요. 웜쿨체크시트를 입술가까지 V자로 들어주세요. 웜쿨체크시트의 립앤치크 컬러 중 입술색과 가장 가까워 보이는 색상을 선택해주세요. 가까워보이는 색 모두 다 선택하시면 됩니다.'
 };
 
 // 전역 TTS 상태 관리
@@ -464,10 +465,10 @@ function initNavigationButtons() {
     const backToConceptBtn = document.getElementById('backToConceptBtn');
     const nextStageBtn = document.getElementById('nextStageBtn');
     
-    // 개념설명으로 돌아가기 버튼
+    // 진단 전 준비하기 버튼
     if (backToConceptBtn) {
         backToConceptBtn.addEventListener('click', () => {
-            window.location.href = 'index.html';
+            window.location.href = 'prepare.html';
         });
     }
     
